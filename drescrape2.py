@@ -1,5 +1,4 @@
 # written by pico
-# newest version finished 1/11/2016
 
 import requests
 import bs4
