@@ -122,7 +122,7 @@ for student in useTheseStudents:
 
     # time spent
     for day in dateList:
-        studHours, studMins, studSecs = kid.calcTimeSpent( day, kid.studHours, kid.studMins, kid.studSecs )
+        kid.studHours, kid.studMins, kid.studSecs = kid.calcTimeSpent( day, kid.studHours, kid.studMins, kid.studSecs )
 
     # first name, last name, minutes, date range, wpm, class, substandard
     studentDir = [kid.name[0],
