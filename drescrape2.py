@@ -74,7 +74,8 @@ for student in useTheseStudents:
 
     kid = Student( [studentName[0].text.split( ' ' )[0], studentName[0].text.split( ' ' )[1]],
                    studentCache,
-                   tdTags )
+                   tdTags,
+                   worksheet)
 
     # this list will store a single attempt, time, WPM, and %
     lineData = []
