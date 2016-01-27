@@ -61,6 +61,7 @@ for key, value in data.iteritems():
         for item in value:
             useTheseStudents.append( item )
 
+# generate a progress bar
 pbar = ProgressBar(widgets=[Percentage(), Bar()], maxval=len(useTheseStudents)).start()
 
 for student in useTheseStudents:
@@ -139,11 +140,6 @@ for student in useTheseStudents:
             myList = ', '.join( map( str, substandardDays ) )
             studentDir.append( myList )
 
-    # f = open('dretest.txt','a+')
-    # for thing in studentDir:
-    #     f.write(str(thing) + " ")
-    # f.write("\n")
-    # f.close()
     rowStart = kid.writeGoogle( rowStart, studentDir, kid.name[0] + kid.name[1] )
 
     pbar.update(useTheseStudents.index((student)))
