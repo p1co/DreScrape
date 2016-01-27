@@ -1,5 +1,4 @@
 # written by pico
-# testing github push
 
 import requests
 import bs4
@@ -7,18 +6,18 @@ import json
 import gspread
 from datetime import datetime
 from student import Student
-
+from progressbar import Percentage, ProgressBar, Bar
 from oauth2client.client import SignedJwtAssertionCredentials
 
-worksheetName = "moose"  # moose & typingweb_grades
-uploadWhichGrade = "test"  # options: grade6 grade7 grade8 test
+worksheetName    = "moose"  # moose & typingweb_grades
+uploadWhichGrade = "grade7"  # options: grade6 grade7 grade8 test
 
 with open('creds.json') as data_file:
     data = json.load(data_file)
 
 # datetime(year, month, day)
-startDate = datetime( int( 2015 ), int( 10 ), int( 26 ) )
-endDate = datetime( int( 2016 ), int( 1 ), int( 30 ) )
+startDate = datetime( int( 2016 ), int( 1 ), int( 11 ) )
+endDate   = datetime( int( 2016 ), int( 1 ), int( 30 ) )
 
 URL = data['url1']
 
@@ -61,6 +60,8 @@ for key, value in data.iteritems():
     if key == uploadWhichGrade:
         for item in value:
             useTheseStudents.append( item )
+
+pbar = ProgressBar(widgets=[Percentage(), Bar()], maxval=len(useTheseStudents)).start()
 
 for student in useTheseStudents:
     r = client.get(data['url2'] + student + data['url3'])
@@ -145,4 +146,7 @@ for student in useTheseStudents:
     # f.close()
     rowStart = kid.writeGoogle( rowStart, studentDir, kid.name[0] + kid.name[1] )
 
+    pbar.update(useTheseStudents.index((student)))
+
+pbar.finish()
 print("Done processing grade {}.".format( uploadWhichGrade[-1] ))
