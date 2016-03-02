@@ -9,15 +9,15 @@ from student import Student
 from progressbar import Percentage, ProgressBar, Bar
 from oauth2client.client import SignedJwtAssertionCredentials
 
-worksheetName    = "moose"  # moose & typingweb_grades
+worksheetName    = "typingweb_grades"  # moose & typingweb_grades
 uploadWhichGrade = "grade7"  # options: grade6 grade7 grade8 test
 
 with open('creds.json') as data_file:
     data = json.load(data_file)
 
-# datetime(year, month, day)
-startDate = datetime( int( 2016 ), int( 1 ), int( 11 ) )
-endDate   = datetime( int( 2016 ), int( 1 ), int( 30 ) )
+# datetime(                year,      month,     day)
+startDate = datetime( int( 2016 ), int( 03 ), int( 02 ) )
+endDate   = datetime( int( 2016 ), int( 03 ), int( 02 ) )
 
 URL = data['url1']
 
@@ -60,6 +60,8 @@ for key, value in data.iteritems():
     if key == uploadWhichGrade:
         for item in value:
             useTheseStudents.append( item )
+
+print("\nParsing through student data..\n")
 
 # generate a progress bar
 pbar = ProgressBar(widgets=[Percentage(), Bar()], maxval=len(useTheseStudents)).start()
@@ -145,4 +147,4 @@ for student in useTheseStudents:
     pbar.update(useTheseStudents.index((student)))
 
 pbar.finish()
-print("Done processing grade {}.".format( uploadWhichGrade[-1] ))
+print("\nDone processing grade {}.\n".format( uploadWhichGrade[-1] ))

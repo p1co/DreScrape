@@ -43,9 +43,11 @@ class Student( ):
     # translate the date in the data to a format
     # used by datetime module
     def calcDateBasedOnDataEntries( self, day ):
-        # because those typingweb idiots wrote 'Sept' instead of 'Sep'
+        # because those typingweb idiots wrote 'Sept' instead of 'Sep', and 'March
         if day[0].split( ' ' )[0] == 'Sept.':
             return datetime( int( day[0].split( ' ' )[2] ), 9, int( day[0].split( ' ' )[1].split( ',' )[0] ) )
+        elif day[0].split( ' ' )[0] == 'March':
+            return datetime( int( day[0].split( ' ' )[2] ), 3, int( day[0].split( ' ' )[1].split( ',' )[0] ) )
         else:
             return datetime.strptime( day[0], '%b. %d, %Y' )
             # assholes..
