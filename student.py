@@ -56,16 +56,11 @@ class Student( ):
     def calcTimeSpent( self, day, studHours, studMins, studSecs ):
         if day[1].count( ':' ) > 1:  # If there was work > 1 hr
             studHours += int( day[1].split( ' ' )[0].split( ':' )[0] )
-            # print("hours: " + day[1].split(' ')[0].split(':')[0])
             studMins += int( day[1].split( ' ' )[0].split( ':' )[1] )
-            # print("mins: " + day[1].split(' ')[0].split(':')[1])
             studSecs += int( day[1].split( ' ' )[0].split( ':' )[2] )
-            # print("secs: " + day[1].split(' ')[0].split(':')[2])
         else:  # If there was work < 1 hr
             studMins += int( day[1].split( ' ' )[0].split( ':' )[0] )
-            # print("mins: " + day[1].split(' ')[0].split(':')[0])
             studSecs += int( day[1].split( ' ' )[0].split( ':' )[1] )
-            # print("secs: " + day[1].split(' ')[0].split(':')[1])
 
         return studHours, studMins, studSecs
 
