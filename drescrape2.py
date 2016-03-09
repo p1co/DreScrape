@@ -146,5 +146,6 @@ for student in useTheseStudents:
 
     pbar.update(useTheseStudents.index((student)))
 
+# progressbar finish
 pbar.finish()
 print("\nDone processing grade {}.\n".format( uploadWhichGrade[-1] ))
